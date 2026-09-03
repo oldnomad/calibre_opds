@@ -16,7 +16,7 @@
     <dependencies>
         <php min-version="8.1"/>
         <lib>pdo_sqlite</lib>
-        <nextcloud min-version="29" max-version="33"/>
+        <nextcloud min-version="29" max-version="34"/>
     </dependencies>
     <settings>
         <personal>OCA\Calibre2OPDS\Settings\PersonalSettings</personal>
