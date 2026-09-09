@@ -65,7 +65,7 @@
         ],
         "translate:scan": "php ./vendor/nextcloud/translationtool/translationtool.phar create-pot-files",
         "translate:generate": "php ./vendor/nextcloud/translationtool/translationtool.phar convert-po-files",
-        "icon:rebuild": "./generate-icon.sh"
+        "icon:rebuild": "./scripts/generate-icon.sh"
     },
     "scripts-descriptions": {
         "cs": "Checks that the code conforms to the coding standard.",
