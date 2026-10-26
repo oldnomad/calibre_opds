@@ -9,6 +9,7 @@ use OCA\Calibre2OPDS\Service\SettingsService;
 use OCP\App\IAppManager;
 use OCP\Files\Folder;
 use OCP\Files\IRootFolder;
+use OCP\Files\IUserFolder;
 use OCP\IConfig;
 use OCP\IURLGenerator;
 use OCP\IUser;
@@ -27,7 +28,7 @@ class SettingsServiceTest extends TestCase {
 
 	private SettingsService $service;
 	private ?object $user = null;
-	private ?Folder $userFolder = null;
+	private ?IUserFolder $userFolder = null;
 	private ?Folder $booksFolder = null;
 	private array $appInfo = [
 		'name' => '@name',
@@ -41,7 +42,7 @@ class SettingsServiceTest extends TestCase {
 		$this->initStorage('.', true);
 		$this->initL10N('sv-SE');
 		$this->booksFolder = $this->createFolderNode('Books', []);
-		$this->userFolder = $this->createFolderNode('.', [
+		$this->userFolder = $this->createFolderNodeClass(IUserFolder::class, '.', [
 			$this->booksFolder,
 			$this->createFolderNode('BadBooks', [], false),
 		]);

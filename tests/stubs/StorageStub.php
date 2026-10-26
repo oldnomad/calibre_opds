@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace Stubs;
 
+use Exception;
 use OCP\Files\File;
 use OCP\Files\FileInfo;
 use OCP\Files\Folder;
@@ -44,7 +45,14 @@ trait StorageStub {
 	}
 
 	protected function createFolderNode(string $dirname, array $content, bool $readable = true): Folder {
-		$dir = $this->createStorageNode(Folder::class, FileInfo::TYPE_FOLDER, $dirname, $readable);
+		return $this->createFolderNodeClass(Folder::class, $dirname, $content, $readable);
+	}
+
+	protected function createFolderNodeClass(string $cls, string $dirname, array $content, bool $readable = true): Folder {
+		if (!is_a($cls, Folder::class, true)) {
+			throw new Exception('invalid folder class ' . $cls);
+		}
+		$dir = $this->createStorageNode($cls, FileInfo::TYPE_FOLDER, $dirname, $readable);
 		foreach ($content as $sub) {
 			$sub->method('getParent')->willReturn($dir);
 		}
